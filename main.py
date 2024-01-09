@@ -1,7 +1,7 @@
 from tkinter import *
 import random
 import string
-
+import pyperclip
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -9,6 +9,7 @@ def generate_password_pressed():
     characters = string.ascii_letters + string.digits + string.punctuation
     random_password = ''.join(random.choice(characters) for i in range(16))
     password_entry.insert(0,random_password)
+    pyperclip.copy(random_password)
     print("Random password is:", random_password)
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def add_button_pressed():
@@ -23,6 +24,7 @@ def add_button_pressed():
 
     else:
         saved_password = website_entry.get() + "  |  " + creds_entry.get() + "  |  " + password_entry.get()
+
         with open("not_passwords.txt", 'a') as f:
             f.write(saved_password)
             f.write("\n")
